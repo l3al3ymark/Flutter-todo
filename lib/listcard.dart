@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './listmodel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Listcard extends StatefulWidget {
   Listcard(this.list);
@@ -21,6 +22,9 @@ class _MyListcardState extends State<Listcard> {
     super.initState();
   }
 
+
+  Firestore db = Firestore.instance;
+
   bool composeCheckbox(bool value) {
     setState(() {
       checkboxValueA = value;
@@ -28,6 +32,12 @@ class _MyListcardState extends State<Listcard> {
           ? textDecoration = TextDecoration.lineThrough
           : textDecoration = TextDecoration.none;
     });
+    var data = new Map<String, dynamic>();
+    data['isDone'] = false;
+    db.collection("Todo").document("PN3y6Js1fKvg2dMtRN93").updateData(data);
+
+//    db.collection('Todo').
+
   }
 
   @override
