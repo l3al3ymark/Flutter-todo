@@ -32,6 +32,7 @@ class _MyListcardState extends State<Listcard> {
 
   @override
   Widget build(BuildContext context) {
+//    checkboxValueA = widget.list.isDone;
     return Padding(
       padding: const EdgeInsets.only(top: 15.0),
       child: Row(
