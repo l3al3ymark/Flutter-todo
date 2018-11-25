@@ -42,6 +42,8 @@ class _MyHomePageState extends State<MyHomePage> {
     lists.add(Listmodel(title: "backend",isDone: false));
   }
 
+  Firestore db = Firestore.instance;
+  
   void _composeEmail()async{
     setState(() async {
       final result = await  Navigator.push(
@@ -50,7 +52,12 @@ class _MyHomePageState extends State<MyHomePage> {
           builder: (context) => Add(),
         ),
       );
-      lists.add(Listmodel(title: result,isDone: false));
+      var data = new Map<String, dynamic>();
+      data['title'] = result;
+      data['isDone'] = false;
+      if (result.toString().length > 0) {
+        db.collection('Todo').add(data);
+      }
     });
   }
 
